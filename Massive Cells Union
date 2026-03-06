@@ -1,0 +1,17 @@
+Sub Massive_Cells_Union()
+ Application.DisplayAlerts = False
+ Dim rg As Range
+ Dim merged As Boolean
+ merged = True
+ Do While merged
+     merged = False
+     For Each rg In Selection
+         If rg.Value = rg.Offset(1, 0).Value And rg.Value <> "" Then
+             Range(rg, rg.Offset(1, 0)).Merge
+             merged = True
+         End If
+     Next
+ Loop
+ Application.DisplayAlerts = True
+End Sub
+
