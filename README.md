@@ -10,3 +10,6 @@ I used extensively the VBAs at work and they all work properly, the .py version 
 
 #2 - Massive Excel Cells Union (.xlm)
   This may sound weird, but is somewhat useful in some instances
+
+
+<img width="129" height="141" alt="Immagine1" src="https://github.com/user-attachments/assets/479ac66f-7482-48e1-ad62-37bde2ca0159" />
