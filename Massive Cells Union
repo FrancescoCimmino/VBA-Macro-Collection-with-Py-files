@@ -5,7 +5,8 @@ Sub Massive_Cells_Union()
  merged = True
  Do While merged
      merged = False
-     For Each rg In Selection
+     For Each rg In Selection 
+' IMPORTANT! IT MERGES THE SELECTED RANGE OF CELLS!
          If rg.Value = rg.Offset(1, 0).Value And rg.Value <> "" Then
              Range(rg, rg.Offset(1, 0)).Merge
              merged = True
