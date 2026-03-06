@@ -9,7 +9,8 @@ I used extensively the VBAs at work and they all work properly, the .py version 
   same as above but python script (works with an external excel file)
 
 #2 - Massive Excel Cells Union (.xlm)
-  This may sound weird, but is somewhat useful in some instances
+  This may sound weird, but is somewhat useful in some instances. 
+  IMPORTANT! IT MERGES ONLY THE SELECTED RANGE OF CELLS!
 
 
 <img width="129" height="141" alt="Immagine1" src="https://github.com/user-attachments/assets/479ac66f-7482-48e1-ad62-37bde2ca0159" />
