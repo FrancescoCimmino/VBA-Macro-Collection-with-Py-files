@@ -14,3 +14,18 @@ I used extensively the VBAs at work and they all work properly, the .py version 
 
 
 <img width="129" height="141" alt="Immagine1" src="https://github.com/user-attachments/assets/479ac66f-7482-48e1-ad62-37bde2ca0159" />
+
+
+#3 - LookInside
+  Write down every subfolder and file inside a selected folder, to check if every requested document is included into a folder, for example.
+
+  example:
+  folder "F1"
+
+  OUTPUT:
+
+  f1|subfolder1|file1
+  f1|subfolder1|file2
+  f1|subfolder1|subfolder2|file3
+
+  and so on
