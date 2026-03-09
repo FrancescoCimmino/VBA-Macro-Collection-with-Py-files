@@ -1,0 +1,61 @@
+Sub LookInside()
+    Dim FldrPicker As FileDialog 'FldrPicker as Filedialog opens the window to select the folder
+    Dim myFolder As String 'extract the path of the folder
+    Dim i As Long 'counter, starting row to write down (down specified: 5)
+
+'initial row, put 5 for better readibility, set 1 to start in "A1". Mind the headers
+
+    i = 5 
+
+    Set FldrPicker = Application.FileDialog(msoFileDialogFolderPicker)
+    With FldrPicker
+        .Title = "Please select the folder"  'window title
+        .AllowMultiSelect = False 'select one folder only
+        If .Show <> -1 Then Exit Sub 'no selection -> stop the macro
+        myFolder = .SelectedItems(1) 'save the path
+    End With
+
+    ' Headers
+    Cells(1, 1).Value = "Sublevel 1"
+    Cells(1, 2).Value = "Sublevel 2"
+    Cells(1, 3).Value = "Sublevel 3"
+    Cells(1, 4).Value = "Sublevel 4"
+    Cells(1, 5).Value = "File"
+
+'maximum 5 levels!
+
+    ' Start the recursive method
+    Call ListFiles(myFolder, i, Array(""))
+End Sub
+
+Sub ListFiles(ByVal currentPath As String, ByRef i As Long, ByVal pathStack As Variant) ' recursive method
+    Dim fso As Object 'fileSystemObject
+    Dim folder As Object
+    Dim subfolder As Object
+    Dim file As Object
+    Dim newStack As Variant 'adjusted version of path stack
+    Dim lvl As Long
+
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    Set folder = fso.GetFolder(currentPath)
+
+    ' Add Folder o stack
+    newStack = pathStack 'copy received stack
+    ReDim Preserve newStack(UBound(newStack) + 1) 'array +1
+    newStack(UBound(newStack)) = folder.Name 'add name at the end of the stack
+
+    ' Write down files
+    For Each file In folder.Files
+        For lvl = LBound(newStack) To UBound(newStack)
+            Cells(i, lvl + 1).Value = newStack(lvl)
+        Next lvl
+        Cells(i, UBound(newStack) + 2).Value = file.Name
+        i = i + 1
+    Next file
+
+    ' recursive check
+    For Each subfolder In folder.SubFolders
+        Call ListFiles(subfolder.path, i, newStack)
+    Next subfolder
+End Sub
+
